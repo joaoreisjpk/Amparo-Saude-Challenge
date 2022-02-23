@@ -1,19 +1,20 @@
+import { useEffect, useMemo, useState, SetStateAction, Dispatch } from 'react';
 import { Button, FormControl, InputLabel, MenuItem } from '@mui/material';
-import { Field, Form, Formik } from 'formik';
-import { useEffect, useMemo, useState } from 'react';
-import MUInput from '../../components/MUInput';
-import MUISelect from '../../components/MUISelect';
-import { formValidationHelper, handlePriceHelper } from '../../helpers';
-import { pricesData } from '../../interfaces';
+import { Form, Formik } from 'formik';
 
-export interface ResultProps {
-  discountedPrice: number;
-  defaultPrice: number;
+import MUISelect from '../../components/MUISelect';
+import MUInput from '../../components/MUInput';
+
+import { pricesData } from '../../interfaces';
+import { formValidationHelper, handlePriceHelper } from '../../helpers';
+import { ResultProps } from '.';
+
+interface SelectFormProps extends pricesData {
+  setResult: Dispatch<SetStateAction<ResultProps | undefined>>;
 }
 
-const SelectForm = ({ data }: pricesData) => {
+const SelectForm = ({ data, setResult }: SelectFormProps) => {
   const [firstSelectMenuItem, setFirstSelectMenuItem] = useState<string[]>();
-  const [result, setResult] = useState<ResultProps>();
 
   const secondSelectMenuItems = (originValue: string) =>
     data.filter(({ origem }) => origem === originValue);
@@ -91,11 +92,6 @@ const SelectForm = ({ data }: pricesData) => {
             <Button type='submit' size='large' variant='contained'>
               Calcular
             </Button>
-            <div>
-              {!!result &&
-                `com falemais: ${result.discountedPrice} sem falemais:
-        ${result.defaultPrice}`}
-            </div>
           </Form>
         );
       }}

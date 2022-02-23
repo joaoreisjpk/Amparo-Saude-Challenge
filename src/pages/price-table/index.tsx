@@ -1,15 +1,17 @@
-import * as React from 'react';
 import { styled } from '@mui/material/styles';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
+import {
+  Table,
+  TableBody,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+} from '@mui/material';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
 import { pricesData } from '../../interfaces';
 import Head from 'next/head';
 import Header from '../../components/Header';
+import { GetStaticProps } from 'next';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -40,21 +42,23 @@ export default function Prices({ data }: pricesData): JSX.Element {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Header />
-      <TableContainer component={Paper} sx={{ maxWidth: 1000 }}>
-        <Table sx={{ minWidth: 700 }} aria-label='customized table'>
+      <TableContainer component={Paper} sx={{ maxWidth: 400 }}>
+        <Table sx={{ minWidth: 400 }} aria-label='customized table'>
           <TableHead>
             <TableRow>
-              <StyledTableCell>Origem</StyledTableCell>
-              <StyledTableCell>Destino</StyledTableCell>
-              <StyledTableCell>R$ Por Minuto</StyledTableCell>
+              <StyledTableCell align='center'>Origem</StyledTableCell>
+              <StyledTableCell align='center'>Destino</StyledTableCell>
+              <StyledTableCell align='center'>R$ Por Minuto</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {data.map((item) => (
               <StyledTableRow key={item.id}>
-                <StyledTableCell>{item.origem}</StyledTableCell>
-                <StyledTableCell>{item.destino}</StyledTableCell>
-                <StyledTableCell>{item.price}</StyledTableCell>
+                <StyledTableCell align='center'>{item.origem}</StyledTableCell>
+                <StyledTableCell align='center'>{item.destino}</StyledTableCell>
+                <StyledTableCell align='center'>
+                  {item.price.toFixed(2)}
+                </StyledTableCell>
               </StyledTableRow>
             ))}
           </TableBody>
