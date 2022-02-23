@@ -8,3 +8,10 @@ export interface priceItem {
 export interface pricesData {
   data: priceItem[];
 }
+
+export interface formikValueProps {
+  originValue: string;
+  destinationValue: string;
+  planValue: string;
+  minutsValue: number;
+}

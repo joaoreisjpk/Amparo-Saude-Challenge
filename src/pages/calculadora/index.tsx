@@ -4,58 +4,9 @@ import { useEffect, useMemo, useState } from 'react';
 import Header from '../../components/Header';
 import { priceItem, pricesData } from '../../interfaces';
 import { Field, Form, Formik } from 'formik';
+import SelectForm from './_SelectForm';
 
 export default function Calculadora({ data }: pricesData): JSX.Element {
-  const [firstSelectOption, setFirstSelectOption] = useState<string[]>();
-  const [firstSelectValue, setFirstSelectValue] = useState('Select');
-  const [secondSelectValue, setSecondSelectValue] = useState('Select');
-  /*   const [secondSelectOptions, setSecondSelectOptions] = useState<priceItem[]>();
-   */ const [minutsInput, setMinutsInput] = useState('0');
-  const [plano, setPlano] = useState('30');
-  const [result, setResult] =
-    useState<{ descountedPrice: number; defaultPrice: number }>();
-
-  const dataReduce = useMemo(
-    () =>
-      data.reduce((acc, { origem }) => {
-        if (acc.includes(origem)) return acc;
-
-        return [...acc, origem];
-      }, [] as string[]),
-    [data]
-  );
-
-  const handleClick = () => {
-    const item = data.find(
-      ({ origem, destino }) =>
-        origem === firstSelectValue && destino === secondSelectValue
-    );
-
-    const price = item?.price || 0;
-    const totalMinuts = Number(minutsInput) - Number(plano);
-
-    let descountedPrice: number;
-    if (totalMinuts > 0) {
-      descountedPrice = price * 1.1 * totalMinuts;
-    } else descountedPrice = 0;
-
-    const defaultPrice = Number(minutsInput) * price;
-
-    setResult({ descountedPrice, defaultPrice });
-  };
-
-  useEffect(() => {
-    setFirstSelectOption(['Select', ...dataReduce]);
-  }, [dataReduce]);
-
-  const secondSelectOptions = (originValue: string) =>
-    data.filter(({ origem }) => origem === originValue);
-
-  /* useEffect(() => {
-    const array = ;
-    setSecondSelectOptions(array);
-  }, [data, dataReduce, firstSelectValue]); */
-
   return (
     <div>
       <Head>
@@ -65,57 +16,7 @@ export default function Calculadora({ data }: pricesData): JSX.Element {
       </Head>
       <Header />
       <h1>Calculadora</h1>
-      <Formik
-        initialValues={{
-          originValue: 'Select',
-          destinationValue: 'Select',
-          planValue: '30',
-          minutsValue: 0,
-        }}
-        onSubmit={async (inputsData) => console.log(inputsData)}
-      >
-        {({ values }) => {
-          return (
-            <Form>
-              <Field as='select' name='originValue' id='originValue'>
-                {firstSelectOption?.map((item) => (
-                  <option key={item} value={item}>
-                    {item}
-                  </option>
-                ))}
-              </Field>
-              <Field
-                name='destinationValue'
-                id='destinationValue'
-                as='select'
-                disabled={values.originValue === 'Select'}
-              >
-                <option value='Select'>Select</option>
-                {secondSelectOptions(values.originValue)?.map(
-                  ({ id, destino }) => (
-                    <option key={id} value={destino}>
-                      {destino}
-                    </option>
-                  )
-                )}
-                Field
-              </Field>
-              <Field name='planValue' id='planValue' as='select'>
-                <option value={'30'}>FaleMais 30</option>
-                <option value={'60'}>FaleMais 60</option>
-                <option value={'120'}>FaleMais 120</option>
-              </Field>
-              <Field name='minutsValue' id='minutsValue' type='number' />
-              <button type='submit'>Calcular</button>
-              <div>
-                {!!result &&
-                  `com falemais: ${result.descountedPrice} sem falemais:
-            ${result.defaultPrice}`}
-              </div>
-            </Form>
-          );
-        }}
-      </Formik>
+      <SelectForm data={data} />
     </div>
   );
 }
