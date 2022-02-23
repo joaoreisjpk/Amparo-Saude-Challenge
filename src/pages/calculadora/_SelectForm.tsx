@@ -1,8 +1,9 @@
 import { Field, Form, Formik } from 'formik';
 import { useEffect, useMemo, useState } from 'react';
-import { formikValueProps, pricesData } from '../../interfaces';
+import { formValidationHelper, handlePriceHelper } from '../../helpers';
+import { pricesData } from '../../interfaces';
 
-interface ResultProps {
+export interface ResultProps {
   discountedPrice: number;
   defaultPrice: number;
 }
@@ -13,43 +14,6 @@ const SelectForm = ({ data }: pricesData) => {
 
   const secondSelectOptions = (originValue: string) =>
     data.filter(({ origem }) => origem === originValue);
-
-  const handlePrice = (inputsData: formikValueProps) => {
-    const { originValue, destinationValue, minutsValue, planValue } =
-      inputsData;
-
-    const item = data.find(
-      ({ origem, destino }) =>
-        origem === originValue && destino === destinationValue
-    );
-
-    const price = item?.price || 0;
-    const discountedMinuts = minutsValue - Number(planValue);
-    let discountedPrice: number;
-
-    if (discountedMinuts > 0) {
-      discountedPrice = price * 1.1 * discountedMinuts;
-    } else discountedPrice = 0;
-
-    const defaultPrice = minutsValue * price;
-
-    setResult({ discountedPrice, defaultPrice });
-  };
-
-  const formValidation = ({
-    destinationValue,
-    minutsValue,
-  }: formikValueProps) => {
-    if (destinationValue === 'Select') {
-      return { destinationValue: 'Por favor selecione o DDD de destino' };
-    }
-    if (typeof minutsValue !== 'number' || minutsValue <= 0) {
-      return {
-        minutsValue: 'Por favor digite um número positiro e maior que zero',
-      };
-    }
-    return {};
-  };
 
   const dataReduce = useMemo(
     () =>
@@ -73,8 +37,10 @@ const SelectForm = ({ data }: pricesData) => {
         planValue: '30',
         minutsValue: 0,
       }}
-      validate={formValidation}
-      onSubmit={async (inputsData) => handlePrice(inputsData)}
+      validate={formValidationHelper}
+      onSubmit={async (inputsData) =>
+        handlePriceHelper({ inputsData, data, setResult })
+      }
     >
       {({ values, errors }) => {
         console.log(errors);
