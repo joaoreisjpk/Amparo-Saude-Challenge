@@ -1,4 +1,4 @@
-import type { GetServerSideProps, NextPage } from 'next';
+import type { GetServerSideProps, GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
 import Header from '../../components/Header';
 import { pricesData } from '../../interfaces';
@@ -53,7 +53,7 @@ export default function Prices({ data }: pricesData): JSX.Element {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const response = await fetch('http://localhost:3000/api/prices');
   const data = await response.json();
 
@@ -61,5 +61,6 @@ export const getServerSideProps: GetServerSideProps = async () => {
     props: {
       data,
     },
+    revalidate: 15 * 60 * 60,
   };
 };
