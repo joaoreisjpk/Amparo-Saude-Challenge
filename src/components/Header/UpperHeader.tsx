@@ -1,23 +1,27 @@
-import Image from 'next/image';
 import FacebookOutlinedIcon from '@mui/icons-material/FacebookOutlined';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import YouTubeIcon from '@mui/icons-material/YouTube';
-import Link from 'next/link';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import PhoneIcon from '@mui/icons-material/Phone';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-import Button from '@mui/material/Button';
 
-const Header = () => {
+export default function UpperHeader() {
   return (
-    <section>
-      <div
+    <div
+      style={{
+        backgroundColor: '#eee',
+        marginBottom: '10px',
+        display: 'flex',
+        justifyContent: 'center',
+      }}
+    >
+      <section
         style={{
-          backgroundColor: '#eee',
-          marginBottom: '10px',
           display: 'flex',
           justifyContent: 'space-between',
+          width: '100v%',
+          maxWidth: '1600px',
         }}
       >
         <div style={{ display: 'flex' }}>
@@ -92,53 +96,7 @@ const Header = () => {
             (11) 4020-1766
           </div>
         </div>
-      </div>
-      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <div>
-          <Link href='/'>
-            <a
-              href='#'
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                marginLeft: '2rem',
-              }}
-            >
-              <div>
-                <Image src='/logo.png' alt='' width='60px' height='60px' />
-              </div>
-              <div style={{ marginLeft: '10px' }}>
-                <Image src='/logoname.png' alt='' width='120px' height='45px' />
-              </div>
-            </a>
-          </Link>
-        </div>
-        <div style={{ margin: '1rem' }}>
-          <Link href='/'>
-            <a href=''>
-              <Button sx={{ color: 'black' }} size='small'>
-                Quem é a amparo
-              </Button>
-            </a>
-          </Link>
-          <Link href='/calculadora'>
-            <a href=''>
-              <Button
-                disableElevation
-                disableFocusRipple
-                disableRipple
-                sx={{ background: '#bc384b', margin: '0 2rem 0 1rem' }}
-                variant='contained'
-                size='small'
-              >
-                Calcule seu Desconto
-              </Button>
-            </a>
-          </Link>
-        </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
-};
-
-export default Header;
+}

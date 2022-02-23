@@ -1,7 +1,7 @@
 import type { GetStaticProps } from 'next';
 import Head from 'next/head';
 import { useState } from 'react';
-import Header from '../../components/Header';
+import Header from '../../components/Header/';
 import { formikValueProps, pricesData } from '../../interfaces';
 import SelectForm from './_SelectForm';
 import Table from './_Table';
