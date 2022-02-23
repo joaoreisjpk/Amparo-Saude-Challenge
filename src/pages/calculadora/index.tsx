@@ -7,7 +7,12 @@ import { priceItem, pricesData } from '../../interfaces';
 export default function Calculadora({ data }: pricesData): JSX.Element {
   const [firstSelectOption, setFirstSelectOption] = useState<string[]>();
   const [firstSelectValue, setFirstSelectValue] = useState('Select');
+  const [secondSelectValue, setSecondSelectValue] = useState('Select');
   const [secondSelectOptions, setSecondSelectOptions] = useState<priceItem[]>();
+  const [minutsInput, setMinutsInput] = useState('0');
+  const [plano, setPlano] = useState('30');
+  const [result, setResult] =
+    useState<{ descountedPrice: number; defaultPrice: number }>();
 
   const dataReduce = useMemo(
     () =>
@@ -18,6 +23,25 @@ export default function Calculadora({ data }: pricesData): JSX.Element {
       }, [] as string[]),
     [data]
   );
+
+  const handleClick = () => {
+    const item = data.find(
+      ({ origem, destino }) =>
+        origem === firstSelectValue && destino === secondSelectValue
+    );
+
+    const price = item?.price || 0;
+    const totalMinuts = Number(minutsInput) - Number(plano);
+
+    let descountedPrice: number;
+    if (totalMinuts > 0) {
+      descountedPrice = price * 1.1 * totalMinuts;
+    } else descountedPrice = 0;
+
+    const defaultPrice = Number(minutsInput) * price;
+
+    setResult({ descountedPrice, defaultPrice });
+  };
 
   useEffect(() => {
     setFirstSelectOption(['Select', ...dataReduce]);
@@ -48,13 +72,37 @@ export default function Calculadora({ data }: pricesData): JSX.Element {
           </option>
         ))}
       </select>
-      <select name='' id='' disabled={firstSelectValue === 'Select'}>
+      <select
+        name=''
+        id=''
+        disabled={firstSelectValue === 'Select'}
+        onChange={({ target }) => setSecondSelectValue(target.value)}
+      >
+        <option value='Select'>Select</option>
         {secondSelectOptions?.map(({ id, destino }) => (
           <option key={id} value={destino}>
             {destino}
           </option>
         ))}
       </select>
+      <select name='' id='' onChange={({ target }) => setPlano(target.value)}>
+        <option value={'30'}>FaleMais 30</option>
+        <option value={'60'}>FaleMais 60</option>
+        <option value={'120'}>FaleMais 120</option>
+      </select>
+      <input
+        type='number'
+        value={minutsInput}
+        onChange={({ target }) => setMinutsInput(target.value)}
+      />
+      <button type='button' onClick={handleClick}>
+        Calcular
+      </button>
+      <div>
+        {!!result &&
+          `com falemais: ${result.descountedPrice} sem falemais:
+        ${result.defaultPrice}`}
+      </div>
     </div>
   );
 }
