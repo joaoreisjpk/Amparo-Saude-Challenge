@@ -1,6 +1,7 @@
-import { FormControl, InputLabel, MenuItem } from '@mui/material';
+import { Button, FormControl, InputLabel, MenuItem } from '@mui/material';
 import { Field, Form, Formik } from 'formik';
 import { useEffect, useMemo, useState } from 'react';
+import MUInput from '../../components/MUInput';
 import MUISelect from '../../components/MUISelect';
 import { formValidationHelper, handlePriceHelper } from '../../helpers';
 import { pricesData } from '../../interfaces';
@@ -44,7 +45,7 @@ const SelectForm = ({ data }: pricesData) => {
         handlePriceHelper({ inputsData, data, setResult })
       }
     >
-      {({ values, errors }) => {
+      {({ values }) => {
         return (
           <Form>
             <FormControl>
@@ -61,7 +62,7 @@ const SelectForm = ({ data }: pricesData) => {
             <FormControl>
               <InputLabel id='destinationValue'>DDD de Destino</InputLabel>
               <MUISelect
-                label='exchangeCurrency'
+                label='destinationValue'
                 name='destinationValue'
                 disabled={values.originValue === 'Select'}
               >
@@ -78,24 +79,23 @@ const SelectForm = ({ data }: pricesData) => {
 
             <FormControl>
               <InputLabel id='planValue'>Plano</InputLabel>
-              <MUISelect
-                name='planValue'
-                id='planValue'
-                label='exchangeCurrency'
-              >
+              <MUISelect name='planValue' label='planValue'>
                 <MenuItem value={'30'}>FaleMais 30</MenuItem>
                 <MenuItem value={'60'}>FaleMais 60</MenuItem>
                 <MenuItem value={'120'}>FaleMais 120</MenuItem>
               </MUISelect>
             </FormControl>
-            <Field name='minutsValue' id='minutsValue' type='number' />
-            <button type='submit'>Calcular</button>
+
+            <MUInput name='minutsValue' type='number' label='Minutagem' />
+
+            <Button type='submit' size='large' variant='contained'>
+              Calcular
+            </Button>
             <div>
               {!!result &&
                 `com falemais: ${result.discountedPrice} sem falemais:
         ${result.defaultPrice}`}
             </div>
-            <div>{errors.destinationValue && errors.minutsValue}</div>
           </Form>
         );
       }}
