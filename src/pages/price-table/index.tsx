@@ -12,7 +12,43 @@ export default function Prices({ data }: pricesData): JSX.Element {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Header />
-      <h1>Price Table</h1>
+      <table>
+        <tr>
+          <th>Origem</th>
+          <th>Destino</th>
+          <th>R$ Por Minuto</th>
+        </tr>
+        <tr>
+          <td>011</td>
+          <td>016</td>
+          <td>{data['011']['016']}</td>
+        </tr>
+        <tr>
+          <td>011</td>
+          <td>017</td>
+          <td>{data['011']['017']}</td>
+        </tr>
+        <tr>
+          <td>011</td>
+          <td>018</td>
+          <td>{data['011']['018']}</td>
+        </tr>
+        <tr>
+          <td>011</td>
+          <td>016</td>
+          <td>{data['016']['011']}</td>
+        </tr>
+        <tr>
+          <td>011</td>
+          <td>016</td>
+          <td>{data['017']['011']}</td>
+        </tr>
+        <tr>
+          <td>011</td>
+          <td>016</td>
+          <td>{data['018']['011']}</td>
+        </tr>
+      </table>
     </div>
   );
 }
