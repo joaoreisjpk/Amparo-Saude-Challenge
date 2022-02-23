@@ -1,4 +1,4 @@
-interface priceItem {
+export interface priceItem {
   id: number;
   origem: string;
   destino: string;

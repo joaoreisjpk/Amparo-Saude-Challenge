@@ -1,13 +1,32 @@
-import type { GetServerSideProps } from 'next';
+import type { GetStaticProps } from 'next';
 import Head from 'next/head';
-import { useEffect } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import Header from '../../components/Header';
-import { pricesData } from '../../interfaces';
+import { priceItem, pricesData } from '../../interfaces';
 
 export default function Calculadora({ data }: pricesData): JSX.Element {
+  const [firstSelectOption, setFirstSelectOption] = useState<string[]>();
+  const [firstSelectValue, setFirstSelectValue] = useState('Select');
+  const [secondSelectOptions, setSecondSelectOptions] = useState<priceItem[]>();
+
+  const dataReduce = useMemo(
+    () =>
+      data.reduce((acc, { origem }) => {
+        if (acc.includes(origem)) return acc;
+
+        return [...acc, origem];
+      }, [] as string[]),
+    [data]
+  );
+
   useEffect(() => {
-    console.log(data);
-  }, [data]);
+    setFirstSelectOption(['Select', ...dataReduce]);
+  }, [dataReduce]);
+
+  useEffect(() => {
+    const array = data.filter(({ origem }) => origem === firstSelectValue);
+    setSecondSelectOptions(array);
+  }, [data, dataReduce, firstSelectValue]);
 
   return (
     <div>
@@ -18,11 +37,29 @@ export default function Calculadora({ data }: pricesData): JSX.Element {
       </Head>
       <Header />
       <h1>Calculadora</h1>
+      <select
+        name=''
+        id=''
+        onChange={({ target }) => setFirstSelectValue(target.value)}
+      >
+        {firstSelectOption?.map((item) => (
+          <option key={item} value={item}>
+            {item}
+          </option>
+        ))}
+      </select>
+      <select name='' id='' disabled={firstSelectValue === 'Select'}>
+        {secondSelectOptions?.map(({ id, destino }) => (
+          <option key={id} value={destino}>
+            {destino}
+          </option>
+        ))}
+      </select>
     </div>
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const response = await fetch('http://localhost:3000/api/prices');
   const data = await response.json();
 
