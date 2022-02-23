@@ -44,8 +44,7 @@ export interface MUITableProps extends formikValueProps {
   defaultPrice: number;
 }
 
-export default function Table({ data }: { data: MUITableProps }) {
-  if (!data) return null;
+export default function Table({ data }: { data: MUITableProps | undefined }) {
   return (
     <TableContainer component={Paper}>
       <MUITable sx={{ minWidth: 700 }} aria-label='customized table'>
@@ -60,28 +59,29 @@ export default function Table({ data }: { data: MUITableProps }) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {[data].map((item) => (
-            <StyledTableRow key={item.minutsValue + item.defaultPrice}>
-              <StyledTableCell component='th' scope='row'>
-                {item.originValue}
-              </StyledTableCell>
-              <StyledTableCell align='center'>
-                {item.destinationValue}
-              </StyledTableCell>
-              <StyledTableCell align='center'>
-                {item.minutsValue}
-              </StyledTableCell>
-              <StyledTableCell align='center'>
-                FaleMais {item.planValue}
-              </StyledTableCell>
-              <StyledTableCell align='center'>
-                {item.discountedPrice}
-              </StyledTableCell>
-              <StyledTableCell align='center'>
-                {item.defaultPrice}
-              </StyledTableCell>
-            </StyledTableRow>
-          ))}
+          {!!data &&
+            [data].map((item) => (
+              <StyledTableRow key={item.minutsValue + item.defaultPrice}>
+                <StyledTableCell component='th' scope='row'>
+                  {item.originValue}
+                </StyledTableCell>
+                <StyledTableCell align='center'>
+                  {item.destinationValue}
+                </StyledTableCell>
+                <StyledTableCell align='center'>
+                  {item.minutsValue}
+                </StyledTableCell>
+                <StyledTableCell align='center'>
+                  FaleMais {item.planValue}
+                </StyledTableCell>
+                <StyledTableCell align='center'>
+                  {item.discountedPrice}
+                </StyledTableCell>
+                <StyledTableCell align='center'>
+                  {item.defaultPrice}
+                </StyledTableCell>
+              </StyledTableRow>
+            ))}
         </TableBody>
       </MUITable>
     </TableContainer>
