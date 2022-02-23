@@ -1,5 +1,7 @@
+import { FormControl, InputLabel, MenuItem } from '@mui/material';
 import { Field, Form, Formik } from 'formik';
 import { useEffect, useMemo, useState } from 'react';
+import MUISelect from '../../components/MUISelect';
 import { formValidationHelper, handlePriceHelper } from '../../helpers';
 import { pricesData } from '../../interfaces';
 
@@ -9,10 +11,10 @@ export interface ResultProps {
 }
 
 const SelectForm = ({ data }: pricesData) => {
-  const [firstSelectOption, setFirstSelectOption] = useState<string[]>();
+  const [firstSelectMenuItem, setFirstSelectMenuItem] = useState<string[]>();
   const [result, setResult] = useState<ResultProps>();
 
-  const secondSelectOptions = (originValue: string) =>
+  const secondSelectMenuItems = (originValue: string) =>
     data.filter(({ origem }) => origem === originValue);
 
   const dataReduce = useMemo(
@@ -26,7 +28,7 @@ const SelectForm = ({ data }: pricesData) => {
   );
 
   useEffect(() => {
-    setFirstSelectOption(['Select', ...dataReduce]);
+    setFirstSelectMenuItem(['Select', ...dataReduce]);
   }, [dataReduce]);
 
   return (
@@ -43,37 +45,49 @@ const SelectForm = ({ data }: pricesData) => {
       }
     >
       {({ values, errors }) => {
-        console.log(errors);
         return (
           <Form>
-            <Field as='select' name='originValue' id='originValue'>
-              {firstSelectOption?.map((item) => (
-                <option key={item} value={item}>
-                  {item}
-                </option>
-              ))}
-            </Field>
-            <Field
-              name='destinationValue'
-              id='destinationValue'
-              as='select'
-              disabled={values.originValue === 'Select'}
-            >
-              <option value='Select'>Select</option>
-              {secondSelectOptions(values.originValue)?.map(
-                ({ id, destino }) => (
-                  <option key={id} value={destino}>
-                    {destino}
-                  </option>
-                )
-              )}
-              Field
-            </Field>
-            <Field name='planValue' id='planValue' as='select'>
-              <option value={'30'}>FaleMais 30</option>
-              <option value={'60'}>FaleMais 60</option>
-              <option value={'120'}>FaleMais 120</option>
-            </Field>
+            <FormControl>
+              <InputLabel id='originValue'>DDD de Origem</InputLabel>
+              <MUISelect label='exchangeCurrency' name='originValue'>
+                {firstSelectMenuItem?.map((item) => (
+                  <MenuItem key={item} value={item}>
+                    {item}
+                  </MenuItem>
+                ))}
+              </MUISelect>
+            </FormControl>
+
+            <FormControl>
+              <InputLabel id='destinationValue'>DDD de Destino</InputLabel>
+              <MUISelect
+                label='exchangeCurrency'
+                name='destinationValue'
+                disabled={values.originValue === 'Select'}
+              >
+                <MenuItem value='Select'>Select</MenuItem>
+                {secondSelectMenuItems(values.originValue)?.map(
+                  ({ id, destino }) => (
+                    <MenuItem key={id} value={destino}>
+                      {destino}
+                    </MenuItem>
+                  )
+                )}
+              </MUISelect>
+            </FormControl>
+
+            <FormControl>
+              <InputLabel id='planValue'>Plano</InputLabel>
+              <MUISelect
+                name='planValue'
+                id='planValue'
+                label='exchangeCurrency'
+              >
+                <MenuItem value={'30'}>FaleMais 30</MenuItem>
+                <MenuItem value={'60'}>FaleMais 60</MenuItem>
+                <MenuItem value={'120'}>FaleMais 120</MenuItem>
+              </MUISelect>
+            </FormControl>
             <Field name='minutsValue' id='minutsValue' type='number' />
             <button type='submit'>Calcular</button>
             <div>
