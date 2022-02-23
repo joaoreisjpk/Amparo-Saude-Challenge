@@ -1,9 +1,7 @@
 import type { GetStaticProps } from 'next';
 import Head from 'next/head';
-import { useEffect, useMemo, useState } from 'react';
 import Header from '../../components/Header';
-import { priceItem, pricesData } from '../../interfaces';
-import { Field, Form, Formik } from 'formik';
+import { pricesData } from '../../interfaces';
 import SelectForm from './_SelectForm';
 
 export default function Calculadora({ data }: pricesData): JSX.Element {

@@ -2,33 +2,53 @@ import { Field, Form, Formik } from 'formik';
 import { useEffect, useMemo, useState } from 'react';
 import { formikValueProps, pricesData } from '../../interfaces';
 
+interface ResultProps {
+  discountedPrice: number;
+  defaultPrice: number;
+}
+
 const SelectForm = ({ data }: pricesData) => {
-  const [result, setResult] =
-    useState<{ descountedPrice: number; defaultPrice: number }>();
+  const [firstSelectOption, setFirstSelectOption] = useState<string[]>();
+  const [result, setResult] = useState<ResultProps>();
 
   const secondSelectOptions = (originValue: string) =>
     data.filter(({ origem }) => origem === originValue);
-  const [firstSelectOption, setFirstSelectOption] = useState<string[]>();
 
-  const handleClick = (inputsData: formikValueProps) => {
+  const handlePrice = (inputsData: formikValueProps) => {
     const { originValue, destinationValue, minutsValue, planValue } =
       inputsData;
+
     const item = data.find(
       ({ origem, destino }) =>
         origem === originValue && destino === destinationValue
     );
 
     const price = item?.price || 0;
-    const totalMinuts = Number(minutsValue) - Number(planValue);
+    const discountedMinuts = minutsValue - Number(planValue);
+    let discountedPrice: number;
 
-    let descountedPrice: number;
-    if (totalMinuts > 0) {
-      descountedPrice = price * 1.1 * totalMinuts;
-    } else descountedPrice = 0;
+    if (discountedMinuts > 0) {
+      discountedPrice = price * 1.1 * discountedMinuts;
+    } else discountedPrice = 0;
 
-    const defaultPrice = Number(minutsValue) * price;
+    const defaultPrice = minutsValue * price;
 
-    setResult({ descountedPrice, defaultPrice });
+    setResult({ discountedPrice, defaultPrice });
+  };
+
+  const formValidation = ({
+    destinationValue,
+    minutsValue,
+  }: formikValueProps) => {
+    if (destinationValue === 'Select') {
+      return { destinationValue: 'Por favor selecione o DDD de destino' };
+    }
+    if (typeof minutsValue !== 'number' || minutsValue <= 0) {
+      return {
+        minutsValue: 'Por favor digite um número positiro e maior que zero',
+      };
+    }
+    return {};
   };
 
   const dataReduce = useMemo(
@@ -53,9 +73,11 @@ const SelectForm = ({ data }: pricesData) => {
         planValue: '30',
         minutsValue: 0,
       }}
-      onSubmit={async (inputsData) => handleClick(inputsData)}
+      validate={formValidation}
+      onSubmit={async (inputsData) => handlePrice(inputsData)}
     >
-      {({ values }) => {
+      {({ values, errors }) => {
+        console.log(errors);
         return (
           <Form>
             <Field as='select' name='originValue' id='originValue'>
@@ -90,9 +112,10 @@ const SelectForm = ({ data }: pricesData) => {
             <button type='submit'>Calcular</button>
             <div>
               {!!result &&
-                `com falemais: ${result.descountedPrice} sem falemais:
+                `com falemais: ${result.discountedPrice} sem falemais:
         ${result.defaultPrice}`}
             </div>
+            <div>{errors.destinationValue && errors.minutsValue}</div>
           </Form>
         );
       }}
