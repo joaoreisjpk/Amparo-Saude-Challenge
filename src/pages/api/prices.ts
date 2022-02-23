@@ -21,12 +21,6 @@ const prices = [
     price: 0.9,
   },
   {
-    id: 4,
-    origem: '011',
-    destino: '016',
-    price: 1.9,
-  },
-  {
     id: 5,
     origem: '016',
     destino: '011',

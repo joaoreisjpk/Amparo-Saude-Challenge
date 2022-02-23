@@ -18,36 +18,13 @@ export default function Prices({ data }: pricesData): JSX.Element {
           <th>Destino</th>
           <th>R$ Por Minuto</th>
         </tr>
-        <tr>
-          <td>011</td>
-          <td>016</td>
-          <td>{data['011']['016']}</td>
-        </tr>
-        <tr>
-          <td>011</td>
-          <td>017</td>
-          <td>{data['011']['017']}</td>
-        </tr>
-        <tr>
-          <td>011</td>
-          <td>018</td>
-          <td>{data['011']['018']}</td>
-        </tr>
-        <tr>
-          <td>011</td>
-          <td>016</td>
-          <td>{data['016']['011']}</td>
-        </tr>
-        <tr>
-          <td>011</td>
-          <td>016</td>
-          <td>{data['017']['011']}</td>
-        </tr>
-        <tr>
-          <td>011</td>
-          <td>016</td>
-          <td>{data['018']['011']}</td>
-        </tr>
+        {data.map((item) => (
+          <tr key={item.id}>
+            <td>{item.origem}</td>
+            <td>{item.destino}</td>
+            <td>{item.price}</td>
+          </tr>
+        ))}
       </table>
     </div>
   );
