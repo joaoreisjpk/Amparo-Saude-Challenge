@@ -1,7 +1,7 @@
+import { Button } from '@mui/material';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
 import Header from '../components/Header';
 
 const Home: NextPage = () => {
@@ -15,12 +15,20 @@ const Home: NextPage = () => {
       </Head>
       <Header />
       <h1>O que deseja fazer?</h1>
-      <button onClick={() => push('/price-table')}>
+      <Button
+        size='large'
+        variant='contained'
+        onClick={() => push('/price-table')}
+      >
         Consultar a tabela de preços
-      </button>
-      <button onClick={() => push('/calculadora')}>
+      </Button>
+      <Button
+        size='large'
+        variant='contained'
+        onClick={() => push('/calculadora')}
+      >
         Descobrir quanto economizaria!
-      </button>
+      </Button>
     </div>
   );
 };
