@@ -49,4 +49,13 @@ const formValidationHelper = ({ formikValues, data }: extendedData) => {
   return {};
 };
 
-export { handlePriceHelper, formValidationHelper };
+const moneyFormatting = (money: number) => {
+  const formattedMoney = new Intl.NumberFormat('en-GB', {
+    style: 'currency',
+    currency: 'BRL',
+  }).format(money);
+
+  return formattedMoney;
+};
+
+export { handlePriceHelper, formValidationHelper, moneyFormatting };

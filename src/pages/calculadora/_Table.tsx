@@ -9,6 +9,7 @@ import Paper from '@mui/material/Paper';
 import { useResults } from '../../hooks/useResults';
 import { Button } from '@mui/material';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import { moneyFormatting } from '../../helpers';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -74,10 +75,10 @@ export default function Table() {
                   FaleMais {item.planValue}
                 </StyledTableCell>
                 <StyledTableCell align='center'>
-                  {item.discountedPrice.toFixed(2)}
+                  {moneyFormatting(item.discountedPrice)}
                 </StyledTableCell>
                 <StyledTableCell align='center'>
-                  {item.defaultPrice.toFixed(2)}
+                  {moneyFormatting(item.defaultPrice)}
                 </StyledTableCell>
                 <StyledTableCell align='center'>
                   <Button
