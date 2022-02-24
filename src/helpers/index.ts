@@ -1,17 +1,10 @@
-import { Dispatch, SetStateAction } from 'react';
 import { formikValueProps, pricesData } from '../interfaces';
-import { ResultProps } from '../pages/calculadora';
 
 interface PriceHelperProps extends pricesData {
   inputsData: formikValueProps;
-  setResult: Dispatch<SetStateAction<ResultProps | undefined>>;
 }
 
-const handlePriceHelper = ({
-  inputsData,
-  data,
-  setResult,
-}: PriceHelperProps) => {
+const handlePriceHelper = ({ inputsData, data }: PriceHelperProps) => {
   const { originValue, destinationValue, minutsValue, planValue } = inputsData;
 
   const item = data.find(
@@ -29,7 +22,7 @@ const handlePriceHelper = ({
 
   const defaultPrice = minutsValue * price;
 
-  setResult({ discountedPrice, defaultPrice, ...inputsData });
+  return { discountedPrice, defaultPrice, ...inputsData };
 };
 
 const formValidationHelper = ({

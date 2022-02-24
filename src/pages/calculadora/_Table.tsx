@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import MUITable from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -7,7 +6,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { formikValueProps } from '../../interfaces';
+import { useResults } from '../../hooks/useResults';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -39,12 +38,9 @@ function createData(
   return { name, calories, fat, carbs, protein };
 }
 
-export interface MUITableProps extends formikValueProps {
-  discountedPrice: number;
-  defaultPrice: number;
-}
+export default function Table() {
+  const { result } = useResults();
 
-export default function Table({ data }: { data: MUITableProps | undefined }) {
   return (
     <TableContainer component={Paper}>
       <MUITable sx={{ minWidth: 700 }} aria-label='customized table'>
@@ -59,8 +55,8 @@ export default function Table({ data }: { data: MUITableProps | undefined }) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {!!data &&
-            [data].map((item) => (
+          {!!result.length &&
+            result.map((item) => (
               <StyledTableRow key={item.minutsValue + item.defaultPrice}>
                 <StyledTableCell component='th' scope='row'>
                   {item.originValue}

@@ -1,19 +1,11 @@
 import type { GetStaticProps } from 'next';
 import Head from 'next/head';
-import { useState } from 'react';
 import Header from '../../components/Header/';
-import { formikValueProps, pricesData } from '../../interfaces';
+import { pricesData } from '../../interfaces';
 import SelectForm from './_SelectForm';
 import Table from './_Table';
 
-export interface ResultProps extends formikValueProps {
-  discountedPrice: number;
-  defaultPrice: number;
-}
-
 export default function Calculadora({ data }: pricesData): JSX.Element {
-  const [result, setResult] = useState<ResultProps>();
-
   return (
     <div>
       <Head>
@@ -23,8 +15,8 @@ export default function Calculadora({ data }: pricesData): JSX.Element {
       </Head>
       <Header />
       <h1>Calculadora</h1>
-      <SelectForm data={data} setResult={setResult} />
-      <Table data={result} />
+      <SelectForm data={data} />
+      <Table />
     </div>
   );
 }

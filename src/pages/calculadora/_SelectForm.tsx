@@ -5,16 +5,15 @@ import { Form, Formik } from 'formik';
 import MUISelect from '../../components/MUISelect';
 import MUInput from '../../components/MUInput';
 
-import { pricesData } from '../../interfaces';
+import { formikValueProps, pricesData } from '../../interfaces';
 import { formValidationHelper, handlePriceHelper } from '../../helpers';
-import { ResultProps } from '.';
+import { useResults } from '../../hooks/useResults';
 
-interface SelectFormProps extends pricesData {
-  setResult: Dispatch<SetStateAction<ResultProps | undefined>>;
-}
+interface SelectFormProps extends pricesData {}
 
-const SelectForm = ({ data, setResult }: SelectFormProps) => {
+const SelectForm = ({ data }: SelectFormProps) => {
   const [firstSelectMenuItem, setFirstSelectMenuItem] = useState<string[]>();
+  const { result, setResult } = useResults();
 
   const secondSelectMenuItems = (originValue: string) =>
     data.filter(({ origem }) => origem === originValue);
@@ -29,6 +28,12 @@ const SelectForm = ({ data, setResult }: SelectFormProps) => {
     [data]
   );
 
+  const handlePrice = (inputsData: formikValueProps) => {
+    const newResult = handlePriceHelper({ inputsData, data });
+
+    setResult([...result, newResult]);
+  };
+
   useEffect(() => {
     setFirstSelectMenuItem(['Select', ...dataReduce]);
   }, [dataReduce]);
@@ -42,9 +47,7 @@ const SelectForm = ({ data, setResult }: SelectFormProps) => {
         minutsValue: 0,
       }}
       validate={formValidationHelper}
-      onSubmit={async (inputsData) =>
-        handlePriceHelper({ inputsData, data, setResult })
-      }
+      onSubmit={handlePrice}
     >
       {({ values }) => {
         return (
