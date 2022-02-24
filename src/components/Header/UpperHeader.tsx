@@ -20,7 +20,7 @@ export default function UpperHeader() {
         style={{
           display: 'flex',
           justifyContent: 'space-between',
-          width: '100v%',
+          width: '100%',
           maxWidth: '1600px',
         }}
       >

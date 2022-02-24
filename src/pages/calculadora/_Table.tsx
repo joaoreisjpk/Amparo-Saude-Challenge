@@ -71,10 +71,10 @@ export default function Table() {
                   FaleMais {item.planValue}
                 </StyledTableCell>
                 <StyledTableCell align='center'>
-                  {item.discountedPrice}
+                  {item.discountedPrice.toFixed(2)}
                 </StyledTableCell>
                 <StyledTableCell align='center'>
-                  {item.defaultPrice}
+                  {item.defaultPrice.toFixed(2)}
                 </StyledTableCell>
               </StyledTableRow>
             ))}
