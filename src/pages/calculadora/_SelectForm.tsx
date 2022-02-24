@@ -16,11 +16,11 @@ const SelectForm = ({ data }: SelectFormProps) => {
   const { result, setResult } = useResults();
 
   const secondSelectMenuItems = (originValue: string) =>
-    data.filter(({ origem }) => origem === originValue);
+    data?.filter(({ origem }) => origem === originValue);
 
   const dataReduce = useMemo(
     () =>
-      data.reduce((acc, { origem }) => {
+      data?.reduce((acc, { origem }) => {
         if (acc.includes(origem)) return acc;
 
         return [...acc, origem];
