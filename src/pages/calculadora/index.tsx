@@ -30,7 +30,7 @@ import type { GetServerSideProps } from 'next';
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const response = await fetch(
-    'https://amparotelefonica.vercel.app/api/prices'
+    'https://amparo-telefonica.vercel.app/api/prices'
   );
   const data = await response.json();
 
