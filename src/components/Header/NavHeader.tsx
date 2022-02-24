@@ -41,7 +41,7 @@ export default function NavHeader() {
           <Link href='/'>
             <a href=''>
               <Button
-                sx={{ color: 'black', padding: '.4rem .8rem' }}
+                sx={{ color: '#555', padding: '.4rem .8rem' }}
                 size='small'
                 style={{ textTransform: 'none', fontSize: '.9rem' }}
               >

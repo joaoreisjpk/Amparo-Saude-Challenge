@@ -12,12 +12,18 @@ export default function Prices({ data }: pricesData): JSX.Element {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Header />
-      <Table data={data} />
+      <Stack gap={3} mt={3}>
+        <Typography align='center' variant='h4' color='gray' fontWeight={600}>
+          Taxas de ligações intermunicipais
+        </Typography>
+        <Table data={data} />
+      </Stack>
     </div>
   );
 }
 
 import { GetServerSideProps } from 'next';
+import { Stack, Typography } from '@mui/material';
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const response = await fetch(

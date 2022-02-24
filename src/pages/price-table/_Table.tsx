@@ -8,6 +8,7 @@ import Paper from '@mui/material/Paper';
 import { pricesData } from '../../interfaces';
 import MUITable from '@mui/material/Table';
 import { Box } from '@mui/material';
+import { moneyFormatting } from '../../helpers';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -31,7 +32,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 export default function Table({ data }: pricesData) {
   return (
-    <Box sx={{ marginTop: '4rem', display: 'flex', justifyContent: 'center' }}>
+    <Box sx={{ display: 'flex', justifyContent: 'center' }}>
       <TableContainer component={Paper} sx={{ maxWidth: 700 }}>
         <MUITable sx={{ minWidth: 400 }} aria-label='customized table'>
           <TableHead>
@@ -47,7 +48,7 @@ export default function Table({ data }: pricesData) {
                 <StyledTableCell align='center'>{item.origem}</StyledTableCell>
                 <StyledTableCell align='center'>{item.destino}</StyledTableCell>
                 <StyledTableCell align='center'>
-                  {item.price.toFixed(2)}
+                  {moneyFormatting(item.price)}
                 </StyledTableCell>
               </StyledTableRow>
             ))}

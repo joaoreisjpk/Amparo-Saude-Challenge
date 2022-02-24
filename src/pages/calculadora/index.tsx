@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { Box, Stack } from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
 
 import { pricesData } from '../../interfaces';
 import Header from '../../components/Header/';
@@ -17,7 +17,9 @@ export default function Calculadora({ data }: pricesData): JSX.Element {
       <Header />
       <Box sx={{ display: 'flex', width: '100%', justifyContent: 'center' }}>
         <Stack sx={{ maxWidth: 1200, marginTop: '1rem' }} gap={'2rem'}>
-          <h1>Calculadora</h1>
+          <Typography variant='h4' color='gray' fontWeight={600}>
+            Calculadora
+          </Typography>
           <SelectForm data={data} />
           <Table />
         </Stack>
