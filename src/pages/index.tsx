@@ -26,13 +26,13 @@ const Home: NextPage = () => {
         ml='max(-20rem, -20vw)'
       >
         <Stack sx={{ width: '700px', gap: '1rem' }}>
-          <Typography variant='h4'>
+          <Typography variant='h4' color='gray' fontWeight={600}>
             Ligações de um jeito simples e{' '}
             <span style={{ color: 'green' }}>eficiente.</span>
           </Typography>
-          <Typography>
+          <Typography color='#555'>
             Você está na Amparo Telefônica, uma empresa com diversos planos que
-            facilitam e dimui seu custo em ligações. Venha receber um serviço
+            facilitam e dimuem seu custo em ligações. Venha receber um serviço
             que se encaixe na sua rotina.
           </Typography>
         </Stack>
