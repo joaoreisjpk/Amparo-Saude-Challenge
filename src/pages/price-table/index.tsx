@@ -20,7 +20,9 @@ export default function Prices({ data }: pricesData): JSX.Element {
 import { GetServerSideProps } from 'next';
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const response = await fetch('http://localhost:3000/api/prices');
+  const response = await fetch(
+    'https://amparotelefonica.vercel.app/api/prices'
+  );
   const data = await response.json();
 
   return {
