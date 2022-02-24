@@ -1,3 +1,4 @@
+import { RandomUUIDOptions } from 'crypto';
 import {
   createContext,
   useContext,
@@ -11,6 +12,7 @@ import { resultProps } from '../interfaces';
 interface IContext {
   result: resultProps[];
   setResult: Dispatch<SetStateAction<resultProps[]>>;
+  remove: (id: string) => void;
 }
 
 interface TradesProviderProps {
@@ -33,8 +35,14 @@ export function ResultsProvider({
     localStorage.setItem('results', JSON.stringify(result));
   }, [result]);
 
+  const remove = (id: string) => {
+    const newResult = result.filter((item) => item.id !== id);
+
+    setResult(newResult);
+  };
+
   return (
-    <ResultsContext.Provider value={{ result, setResult }}>
+    <ResultsContext.Provider value={{ result, setResult, remove }}>
       {children}
     </ResultsContext.Provider>
   );

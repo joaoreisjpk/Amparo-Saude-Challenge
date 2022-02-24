@@ -41,7 +41,7 @@ function createData(
 }
 
 export default function Table() {
-  const { result } = useResults();
+  const { result, remove } = useResults();
 
   return (
     <TableContainer component={Paper} sx={{ maxWidth: 1200 }}>
@@ -60,7 +60,7 @@ export default function Table() {
         <TableBody>
           {!!result.length &&
             result.map((item) => (
-              <StyledTableRow key={item.minutsValue + item.defaultPrice}>
+              <StyledTableRow key={item.id}>
                 <StyledTableCell component='th' align='center' scope='row'>
                   {item.originValue}
                 </StyledTableCell>
@@ -84,6 +84,7 @@ export default function Table() {
                     type='submit'
                     size='large'
                     sx={{ height: '3.4rem', color: '#bc384b' }}
+                    onClick={() => remove(item.id)}
                   >
                     <DeleteOutlineIcon />
                   </Button>
