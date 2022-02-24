@@ -1,12 +1,9 @@
-import { formikValueProps, pricesData } from '../interfaces';
-import { SelectFormProps } from '../pages/calculadora/_SelectForm';
+import { extendedData } from '../interfaces';
+import { uuid } from 'uuidv4';
 
-interface PriceHelperProps extends pricesData {
-  inputsData: formikValueProps;
-}
-
-const handlePriceHelper = ({ inputsData, data }: PriceHelperProps) => {
-  const { originValue, destinationValue, minutsValue, planValue } = inputsData;
+const handlePriceHelper = ({ formikValues, data }: extendedData) => {
+  const { originValue, destinationValue, minutsValue, planValue } =
+    formikValues;
 
   const item = data.find(
     ({ origem, destino }) =>
@@ -23,11 +20,13 @@ const handlePriceHelper = ({ inputsData, data }: PriceHelperProps) => {
 
   const defaultPrice = minutsValue * price;
 
-  return { discountedPrice, defaultPrice, ...inputsData };
+  const id = uuid();
+
+  return { discountedPrice, defaultPrice, ...formikValues, id };
 };
 
-const formValidationHelper = ({ inputsData, data }: PriceHelperProps) => {
-  const { destinationValue, originValue, minutsValue } = inputsData;
+const formValidationHelper = ({ formikValues, data }: extendedData) => {
+  const { destinationValue, originValue, minutsValue } = formikValues;
 
   const optionsValidation = data.some(
     ({ destino, origem }) =>

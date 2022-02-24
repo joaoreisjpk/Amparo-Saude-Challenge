@@ -9,9 +9,7 @@ import { formikValueProps, pricesData } from '../../interfaces';
 import { formValidationHelper, handlePriceHelper } from '../../helpers';
 import { useResults } from '../../hooks/useResults';
 
-export interface SelectFormProps extends pricesData {}
-
-const SelectForm = ({ data }: SelectFormProps) => {
+const SelectForm = ({ data }: pricesData) => {
   const [firstSelectMenuItem, setFirstSelectMenuItem] = useState<string[]>();
   const { result, setResult } = useResults();
 
@@ -28,8 +26,8 @@ const SelectForm = ({ data }: SelectFormProps) => {
     [data]
   );
 
-  const handlePrice = (inputsData: formikValueProps) => {
-    const newResult = handlePriceHelper({ inputsData, data });
+  const handlePrice = (formikValues: formikValueProps) => {
+    const newResult = handlePriceHelper({ formikValues, data });
 
     setResult([...result, newResult]);
   };
@@ -46,9 +44,9 @@ const SelectForm = ({ data }: SelectFormProps) => {
         planValue: '30',
         minutsValue: 0,
       }}
-      validate={(inputsData) =>
+      validate={(formikValues) =>
         formValidationHelper({
-          inputsData,
+          formikValues,
           data,
         })
       }
@@ -101,7 +99,7 @@ const SelectForm = ({ data }: SelectFormProps) => {
               type='submit'
               size='large'
               variant='contained'
-              sx={{ height: '3.4rem' }}
+              sx={{ height: '3.4rem', background: '#44b365' }}
             >
               Calcular
             </Button>

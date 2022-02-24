@@ -6,16 +6,11 @@ import {
   Dispatch,
   useEffect,
 } from 'react';
-import { formikValueProps } from '../interfaces';
-
-export interface ResultProps extends formikValueProps {
-  discountedPrice: number;
-  defaultPrice: number;
-}
+import { resultProps } from '../interfaces';
 
 interface IContext {
-  result: ResultProps[];
-  setResult: Dispatch<SetStateAction<ResultProps[]>>;
+  result: resultProps[];
+  setResult: Dispatch<SetStateAction<resultProps[]>>;
 }
 
 interface TradesProviderProps {
@@ -27,7 +22,7 @@ export const ResultsContext = createContext({} as IContext);
 export function ResultsProvider({
   children,
 }: TradesProviderProps): JSX.Element {
-  const [result, setResult] = useState<ResultProps[]>([] as ResultProps[]);
+  const [result, setResult] = useState<resultProps[]>([] as resultProps[]);
 
   useEffect(() => {
     const getStorage = localStorage.getItem('results') || '[]';

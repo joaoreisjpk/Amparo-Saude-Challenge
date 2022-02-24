@@ -15,3 +15,13 @@ export interface formikValueProps {
   planValue: string;
   minutsValue: number;
 }
+
+export interface extendedData extends pricesData {
+  formikValues: formikValueProps;
+}
+
+export interface resultProps extends formikValueProps {
+  discountedPrice: number;
+  defaultPrice: number;
+  id: string;
+}

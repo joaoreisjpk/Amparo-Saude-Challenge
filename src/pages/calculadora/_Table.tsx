@@ -7,6 +7,8 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { useResults } from '../../hooks/useResults';
+import { Button } from '@mui/material';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -52,13 +54,14 @@ export default function Table() {
             <StyledTableCell align='center'>Plano FaleMais</StyledTableCell>
             <StyledTableCell align='center'>Com FaleMais</StyledTableCell>
             <StyledTableCell align='center'>Sem FaleMais</StyledTableCell>
+            <StyledTableCell align='center' />
           </TableRow>
         </TableHead>
         <TableBody>
           {!!result.length &&
             result.map((item) => (
               <StyledTableRow key={item.minutsValue + item.defaultPrice}>
-                <StyledTableCell component='th' scope='row'>
+                <StyledTableCell component='th' align='center' scope='row'>
                   {item.originValue}
                 </StyledTableCell>
                 <StyledTableCell align='center'>
@@ -75,6 +78,15 @@ export default function Table() {
                 </StyledTableCell>
                 <StyledTableCell align='center'>
                   {item.defaultPrice.toFixed(2)}
+                </StyledTableCell>
+                <StyledTableCell align='center'>
+                  <Button
+                    type='submit'
+                    size='large'
+                    sx={{ height: '3.4rem', color: '#bc384b' }}
+                  >
+                    <DeleteOutlineIcon />
+                  </Button>
                 </StyledTableCell>
               </StyledTableRow>
             ))}
