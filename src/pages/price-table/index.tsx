@@ -1,36 +1,7 @@
-import { styled } from '@mui/material/styles';
-import {
-  Table,
-  TableBody,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
-} from '@mui/material';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import { pricesData } from '../../interfaces';
 import Head from 'next/head';
 import Header from '../../components/Header';
-
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
-  },
-}));
-
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  '&:nth-of-type(odd)': {
-    backgroundColor: theme.palette.action.hover,
-  },
-  // hide last border
-  '&:last-child td, &:last-child th': {
-    border: 0,
-  },
-}));
+import Table from './_Table';
 
 export default function Prices({ data }: pricesData): JSX.Element {
   return (
@@ -41,28 +12,7 @@ export default function Prices({ data }: pricesData): JSX.Element {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Header />
-      <TableContainer component={Paper} sx={{ maxWidth: 400 }}>
-        <Table sx={{ minWidth: 400 }} aria-label='customized table'>
-          <TableHead>
-            <TableRow>
-              <StyledTableCell align='center'>Origem</StyledTableCell>
-              <StyledTableCell align='center'>Destino</StyledTableCell>
-              <StyledTableCell align='center'>R$ Por Minuto</StyledTableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {data.map((item) => (
-              <StyledTableRow key={item.id}>
-                <StyledTableCell align='center'>{item.origem}</StyledTableCell>
-                <StyledTableCell align='center'>{item.destino}</StyledTableCell>
-                <StyledTableCell align='center'>
-                  {item.price.toFixed(2)}
-                </StyledTableCell>
-              </StyledTableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+      <Table data={data} />
     </div>
   );
 }

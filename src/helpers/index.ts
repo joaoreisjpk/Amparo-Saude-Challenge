@@ -32,7 +32,9 @@ const formValidationHelper = ({ formikValues, data }: extendedData) => {
     ({ destino, origem }) =>
       destino === destinationValue && originValue === origem
   );
-
+  if (originValue === 'Select') {
+    return { originValue: 'Por favor selecione o DDD de destino' };
+  }
   if (destinationValue === 'Select') {
     return { destinationValue: 'Por favor selecione o DDD de destino' };
   }
