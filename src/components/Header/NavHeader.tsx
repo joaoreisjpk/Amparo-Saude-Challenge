@@ -51,11 +51,25 @@ export default function NavHeader() {
                 disableElevation
                 disableFocusRipple
                 disableRipple
-                sx={{ background: '#bc384b', margin: '0 2rem 0 1rem' }}
+                sx={{ background: '#bc384b', margin: '0 .8rem' }}
                 variant='contained'
                 size='small'
               >
                 Calcule seu Desconto
+              </Button>
+            </a>
+          </Link>
+          <Link href='/calculadora'>
+            <a href=''>
+              <Button
+                disableElevation
+                disableFocusRipple
+                disableRipple
+                sx={{ background: '#0081a6', margin: '0 2rem 0 .8rem' }}
+                variant='contained'
+                size='small'
+              >
+                consulte taxas locais
               </Button>
             </a>
           </Link>

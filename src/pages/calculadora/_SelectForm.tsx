@@ -9,7 +9,7 @@ import { formikValueProps, pricesData } from '../../interfaces';
 import { formValidationHelper, handlePriceHelper } from '../../helpers';
 import { useResults } from '../../hooks/useResults';
 
-interface SelectFormProps extends pricesData {}
+export interface SelectFormProps extends pricesData {}
 
 const SelectForm = ({ data }: SelectFormProps) => {
   const [firstSelectMenuItem, setFirstSelectMenuItem] = useState<string[]>();
@@ -46,7 +46,12 @@ const SelectForm = ({ data }: SelectFormProps) => {
         planValue: '30',
         minutsValue: 0,
       }}
-      validate={formValidationHelper}
+      validate={(inputsData) =>
+        formValidationHelper({
+          inputsData,
+          data,
+        })
+      }
       onSubmit={handlePrice}
     >
       {({ values }) => {
@@ -92,7 +97,12 @@ const SelectForm = ({ data }: SelectFormProps) => {
 
             <MUInput name='minutsValue' type='number' label='Minutagem' />
 
-            <Button type='submit' size='large' variant='contained'>
+            <Button
+              type='submit'
+              size='large'
+              variant='contained'
+              sx={{ height: '3.4rem' }}
+            >
               Calcular
             </Button>
           </Form>

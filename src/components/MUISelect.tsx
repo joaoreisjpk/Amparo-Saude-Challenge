@@ -1,13 +1,18 @@
 import { Select } from '@mui/material';
 import { useField, FieldAttributes } from 'formik';
-import { ReactElement } from 'react';
 
 type MyRadioProps = {
   children: any;
   label?: string;
+  disabled?: boolean;
 } & FieldAttributes<{}>;
 
-function MUISelect({ children, label, ...props }: MyRadioProps): JSX.Element {
+function MUISelect({
+  children,
+  label,
+  disabled,
+  ...props
+}: MyRadioProps): JSX.Element {
   const [field, meta] = useField<{}>(props);
   const errorText: string = meta.error && meta.touched ? meta.error : '';
   return (
@@ -21,6 +26,7 @@ function MUISelect({ children, label, ...props }: MyRadioProps): JSX.Element {
         type={props.type}
         {...field}
         label={label}
+        disabled={disabled}
         sx={{
           width: 265,
         }}

@@ -1,6 +1,8 @@
 import Head from 'next/head';
-import Header from '../../components/Header/';
+import { Box, Stack } from '@mui/material';
+
 import { pricesData } from '../../interfaces';
+import Header from '../../components/Header/';
 import SelectForm from './_SelectForm';
 import Table from './_Table';
 
@@ -13,9 +15,13 @@ export default function Calculadora({ data }: pricesData): JSX.Element {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Header />
-      <h1>Calculadora</h1>
-      <SelectForm data={data} />
-      <Table />
+      <Box sx={{ display: 'flex', width: '100%', justifyContent: 'center' }}>
+        <Stack sx={{ maxWidth: 1200, marginTop: '1rem' }} gap={'2rem'}>
+          <h1>Calculadora</h1>
+          <SelectForm data={data} />
+          <Table />
+        </Stack>
+      </Box>
     </div>
   );
 }
@@ -23,48 +29,12 @@ export default function Calculadora({ data }: pricesData): JSX.Element {
 import type { GetServerSideProps } from 'next';
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const prices = [
-    {
-      id: 1,
-      origem: '011',
-      destino: '016',
-      price: 1.9,
-    },
-    {
-      id: 2,
-      origem: '011',
-      destino: '017',
-      price: 1.7,
-    },
-    {
-      id: 3,
-      origem: '011',
-      destino: '018',
-      price: 0.9,
-    },
-    {
-      id: 5,
-      origem: '016',
-      destino: '011',
-      price: 2.9,
-    },
-    {
-      id: 6,
-      origem: '017',
-      destino: '011',
-      price: 2.7,
-    },
-    {
-      id: 7,
-      origem: '018',
-      destino: '011',
-      price: 1.9,
-    },
-  ];
+  const response = await fetch('http://localhost:3000/api/prices');
+  const data = await response.json();
+
   return {
     props: {
-      data: prices,
+      data,
     },
-    revalidate: 15 * 60 * 60,
   };
 };

@@ -1,4 +1,5 @@
 import { formikValueProps, pricesData } from '../interfaces';
+import { SelectFormProps } from '../pages/calculadora/_SelectForm';
 
 interface PriceHelperProps extends pricesData {
   inputsData: formikValueProps;
@@ -25,10 +26,14 @@ const handlePriceHelper = ({ inputsData, data }: PriceHelperProps) => {
   return { discountedPrice, defaultPrice, ...inputsData };
 };
 
-const formValidationHelper = ({
-  destinationValue,
-  minutsValue,
-}: formikValueProps) => {
+const formValidationHelper = ({ inputsData, data }: PriceHelperProps) => {
+  const { destinationValue, originValue, minutsValue } = inputsData;
+
+  const optionsValidation = data.some(
+    ({ destino, origem }) =>
+      destino === destinationValue && originValue === origem
+  );
+
   if (destinationValue === 'Select') {
     return { destinationValue: 'Por favor selecione o DDD de destino' };
   }
@@ -37,6 +42,11 @@ const formValidationHelper = ({
       minutsValue: 'Por favor digite um número positiro e maior que zero',
     };
   }
+  if (!optionsValidation)
+    return {
+      destinationValue: 'Por favor atualize seu DDD de destino',
+    };
+
   return {};
 };
 

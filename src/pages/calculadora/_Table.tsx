@@ -42,7 +42,7 @@ export default function Table() {
   const { result } = useResults();
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} sx={{ maxWidth: 1200 }}>
       <MUITable sx={{ minWidth: 700 }} aria-label='customized table'>
         <TableHead>
           <TableRow>
