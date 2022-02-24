@@ -40,8 +40,12 @@ export default function NavHeader() {
         <div style={{ margin: '1rem' }}>
           <Link href='/'>
             <a href=''>
-              <Button sx={{ color: 'black' }} size='small'>
-                Quem é a amparo
+              <Button
+                sx={{ color: 'black', padding: '.4rem .8rem' }}
+                size='small'
+                style={{ textTransform: 'none', fontSize: '.9rem' }}
+              >
+                Quem é a Amparo?
               </Button>
             </a>
           </Link>
@@ -51,25 +55,35 @@ export default function NavHeader() {
                 disableElevation
                 disableFocusRipple
                 disableRipple
-                sx={{ background: '#bc384b', margin: '0 .8rem' }}
+                sx={{
+                  background: '#bc384b',
+                  margin: '0 .5rem',
+                  padding: '.4rem .8rem',
+                }}
                 variant='contained'
                 size='small'
+                style={{ textTransform: 'none', fontWeight: '600' }}
               >
                 Calcule seu Desconto
               </Button>
             </a>
           </Link>
-          <Link href='/calculadora'>
+          <Link href='/price-table'>
             <a href=''>
               <Button
                 disableElevation
                 disableFocusRipple
                 disableRipple
-                sx={{ background: '#0081a6', margin: '0 2rem 0 .8rem' }}
+                sx={{
+                  background: '#0081a6',
+                  margin: '0 2rem 0 .5rem',
+                  padding: '.4rem .8rem',
+                }}
+                style={{ textTransform: 'none', fontWeight: '600' }}
                 variant='contained'
                 size='small'
               >
-                consulte taxas locais
+                Consulte taxas locais
               </Button>
             </a>
           </Link>
