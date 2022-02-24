@@ -20,9 +20,9 @@ export default function Calculadora({ data }: pricesData): JSX.Element {
   );
 }
 
-import type { GetStaticProps } from 'next';
+import type { GetServerSideProps } from 'next';
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const prices = [
     {
       id: 1,

@@ -14,21 +14,17 @@ const Home: NextPage = () => {
         <link rel='shortcut icon' href='/favicon.ico' />
       </Head>
       <Header />
-      <h1>O que deseja fazer?</h1>
-      <Button
-        size='large'
-        variant='contained'
-        onClick={() => push('/price-table')}
-      >
-        Consultar a tabela de preços
-      </Button>
-      <Button
-        size='large'
-        variant='contained'
-        onClick={() => push('/calculadora')}
-      >
-        Descobrir quanto economizaria!
-      </Button>
+      <div style={{ width: '700px' }}>
+        <h1>
+          Ligações de um jeito simples e{' '}
+          <span style={{ color: 'green' }}>eficiente.</span>
+        </h1>
+        <p>
+          Você está na Amparo Telefônica, uma empresa com diversos planos que
+          facilitam e dimui seu custo em ligações. Venha receber um cuidado que
+          se encaixe na sua rotina.
+        </p>
+      </div>
     </div>
   );
 };
