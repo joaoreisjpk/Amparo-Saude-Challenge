@@ -1,7 +1,7 @@
 import { pricesData } from '../../interfaces';
 import Head from 'next/head';
 import Header from '../../components/Header';
-import Table from './_Table';
+import Table from './_table';
 
 export default function Prices({ data }: pricesData): JSX.Element {
   return (
