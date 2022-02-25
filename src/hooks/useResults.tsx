@@ -14,6 +14,7 @@ interface TradesProviderProps {
 export const ResultsContext = createContext({} as IContext);
 
 const URL = process.env.URL || 'https://amparo-telefonica.vercel.app/';
+console.log(URL, process.env.URL);
 
 export function ResultsProvider({
   children,
@@ -22,7 +23,7 @@ export function ResultsProvider({
 
   useEffect(() => {
     async function getResults() {
-      const results = await fetch(URL);
+      const results = await fetch(URL + 'results');
 
       setResults(await results.json());
     }
@@ -31,7 +32,7 @@ export function ResultsProvider({
   }, []);
 
   const setResult = async (newResult: resultProps) => {
-    const resolve = await fetch(URL, {
+    const resolve = await fetch(URL + 'results', {
       method: 'POST',
       body: JSON.stringify(newResult),
     });
@@ -42,7 +43,7 @@ export function ResultsProvider({
   };
 
   const remove = async (id: string) => {
-    const resolve = await fetch(URL, {
+    const resolve = await fetch(URL + 'results', {
       method: 'DELETE',
       body: JSON.stringify({ id }),
     });
