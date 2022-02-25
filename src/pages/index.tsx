@@ -3,6 +3,7 @@ import { Box } from '@mui/system';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Header from '../components/Header';
+import PlanCards from './_planCards';
 
 const Home: NextPage = () => {
   return (
@@ -28,13 +29,14 @@ const Home: NextPage = () => {
         <Stack sx={{ width: '700px', gap: '1rem' }}>
           <Typography variant='h4' color='gray' fontWeight={600}>
             Ligações de um jeito simples e{' '}
-            <span style={{ color: 'green' }}>eficiente.</span>
+            <span style={{ color: '#44b161' }}>eficiente.</span>
           </Typography>
           <Typography color='#555'>
             Você está na Amparo Telefônica, uma empresa com diversos planos que
             facilitam e dimuem seu custo em ligações. Venha receber um serviço
             que se encaixe na sua rotina.
           </Typography>
+          <PlanCards />
         </Stack>
       </Box>
     </div>
