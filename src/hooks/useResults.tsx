@@ -20,7 +20,9 @@ export function ResultsProvider({
 
   useEffect(() => {
     async function getResults() {
-      const results = await fetch('http://localhost:3000/api/results');
+      const results = await fetch(
+        'https://amparo-telefonica.vercel.app/api/results'
+      );
 
       setResults(await results.json());
     }
@@ -29,10 +31,13 @@ export function ResultsProvider({
   }, []);
 
   const setResult = async (newResult: resultProps) => {
-    const resolve = await fetch('http://localhost:3000/api/results', {
-      method: 'POST',
-      body: JSON.stringify(newResult),
-    });
+    const resolve = await fetch(
+      'https://amparo-telefonica.vercel.app/api/results',
+      {
+        method: 'POST',
+        body: JSON.stringify(newResult),
+      }
+    );
 
     const response = await resolve.json();
     console.log(response);
@@ -40,10 +45,13 @@ export function ResultsProvider({
   };
 
   const remove = async (id: string) => {
-    const resolve = await fetch('http://localhost:3000/api/results', {
-      method: 'DELETE',
-      body: JSON.stringify({ id }),
-    });
+    const resolve = await fetch(
+      'https://amparo-telefonica.vercel.app/api/results',
+      {
+        method: 'DELETE',
+        body: JSON.stringify({ id }),
+      }
+    );
 
     const response = await resolve.json();
     setResults(response);
