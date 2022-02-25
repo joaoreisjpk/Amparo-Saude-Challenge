@@ -1,4 +1,4 @@
-import { Card, CardContent, Stack, Typography } from '@mui/material';
+import { Stack } from '@mui/material';
 import CardItem from './_cardItem';
 
 export default function PlanCards() {

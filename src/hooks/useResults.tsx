@@ -1,17 +1,10 @@
-import {
-  createContext,
-  useContext,
-  useState,
-  SetStateAction,
-  Dispatch,
-  useEffect,
-} from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 import { resultProps } from '../interfaces';
 
 interface IContext {
-  result: resultProps[];
-  setResult: Dispatch<SetStateAction<resultProps[]>>;
-  remove: (id: string) => void;
+  result: resultProps[] | undefined;
+  setResult: (newResult: resultProps) => Promise<void>;
+  remove: (id: string) => Promise<void>;
 }
 
 interface TradesProviderProps {
@@ -23,21 +16,37 @@ export const ResultsContext = createContext({} as IContext);
 export function ResultsProvider({
   children,
 }: TradesProviderProps): JSX.Element {
-  const [result, setResult] = useState<resultProps[]>([] as resultProps[]);
+  const [result, setResults] = useState<resultProps[]>();
 
   useEffect(() => {
-    const getStorage = localStorage.getItem('results') || '[]';
-    setResult(JSON.parse(getStorage));
+    async function getResults() {
+      const results = await fetch('http://localhost:3000/api/results');
+
+      setResults(await results.json());
+    }
+
+    getResults();
   }, []);
 
-  useEffect(() => {
-    localStorage.setItem('results', JSON.stringify(result));
-  }, [result]);
+  const setResult = async (newResult: resultProps) => {
+    const resolve = await fetch('http://localhost:3000/api/results', {
+      method: 'POST',
+      body: JSON.stringify(newResult),
+    });
 
-  const remove = (id: string) => {
-    const newResult = result.filter((item) => item.id !== id);
+    const response = await resolve.json();
+    console.log(response);
+    setResults(response);
+  };
 
-    setResult(newResult);
+  const remove = async (id: string) => {
+    const resolve = await fetch('http://localhost:3000/api/results', {
+      method: 'DELETE',
+      body: JSON.stringify({ id }),
+    });
+
+    const response = await resolve.json();
+    setResults(response);
   };
 
   return (
