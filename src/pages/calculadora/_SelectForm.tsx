@@ -103,6 +103,7 @@ const SelectForm = ({ data }: pricesData) => {
               type='submit'
               size='large'
               variant='contained'
+              disabled={isLoading}
               sx={{ height: '3.4rem', background: '#44b365', width: '8rem' }}
             >
               {isLoading ? <CircularProgress /> : 'Calcular'}
