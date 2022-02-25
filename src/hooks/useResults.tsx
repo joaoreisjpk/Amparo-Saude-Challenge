@@ -13,6 +13,8 @@ interface TradesProviderProps {
 
 export const ResultsContext = createContext({} as IContext);
 
+const URL = process.env.URL || 'https://amparo-telefonica.vercel.app/';
+
 export function ResultsProvider({
   children,
 }: TradesProviderProps): JSX.Element {
@@ -20,9 +22,7 @@ export function ResultsProvider({
 
   useEffect(() => {
     async function getResults() {
-      const results = await fetch(
-        'https://amparo-telefonica.vercel.app/api/results'
-      );
+      const results = await fetch(URL);
 
       setResults(await results.json());
     }
@@ -31,13 +31,10 @@ export function ResultsProvider({
   }, []);
 
   const setResult = async (newResult: resultProps) => {
-    const resolve = await fetch(
-      'https://amparo-telefonica.vercel.app/api/results',
-      {
-        method: 'POST',
-        body: JSON.stringify(newResult),
-      }
-    );
+    const resolve = await fetch(URL, {
+      method: 'POST',
+      body: JSON.stringify(newResult),
+    });
 
     const response = await resolve.json();
     console.log(response);
@@ -45,13 +42,10 @@ export function ResultsProvider({
   };
 
   const remove = async (id: string) => {
-    const resolve = await fetch(
-      'https://amparo-telefonica.vercel.app/api/results',
-      {
-        method: 'DELETE',
-        body: JSON.stringify({ id }),
-      }
-    );
+    const resolve = await fetch(URL, {
+      method: 'DELETE',
+      body: JSON.stringify({ id }),
+    });
 
     const response = await resolve.json();
     setResults(response);

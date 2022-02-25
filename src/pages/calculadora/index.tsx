@@ -3,8 +3,8 @@ import { Box, Stack, Typography } from '@mui/material';
 
 import { pricesData } from '../../interfaces';
 import Header from '../../components/Header/';
-import SelectForm from './_SelectForm';
-import Table from './_Table';
+import SelectForm from './_selectForm';
+import Table from './_table';
 
 export default function Calculadora({ data }: pricesData): JSX.Element {
   return (

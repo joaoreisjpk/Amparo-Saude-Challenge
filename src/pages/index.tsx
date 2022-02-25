@@ -23,7 +23,7 @@ const Home: NextPage = () => {
       </Head>
       <Header />
       <Box
-        sx={{ marginTop: '4rem', display: 'flex', justifyContent: 'center' }}
+        sx={{ marginTop: '3rem', display: 'flex', justifyContent: 'center' }}
         ml='max(-20rem, -20vw)'
       >
         <Stack sx={{ width: '700px', gap: '1rem' }}>
