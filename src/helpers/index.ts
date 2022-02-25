@@ -1,5 +1,6 @@
+import { v4 as uuid } from 'uuid';
+
 import { extendedData } from '../interfaces';
-import { uuid } from 'uuidv4';
 
 const handlePriceHelper = ({ formikValues, data }: extendedData) => {
   const { originValue, destinationValue, minutsValue, planValue } =

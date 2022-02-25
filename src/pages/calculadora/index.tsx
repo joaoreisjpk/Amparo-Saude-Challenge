@@ -2,6 +2,7 @@ import Head from 'next/head';
 import { Box, Stack, Typography } from '@mui/material';
 
 import { pricesData } from '../../interfaces';
+
 import Header from '../../components/Header/';
 import SelectForm from './_selectForm';
 import Table from './_table';

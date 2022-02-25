@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react';
+
 import { resultProps } from '../interfaces';
 
 interface IContext {

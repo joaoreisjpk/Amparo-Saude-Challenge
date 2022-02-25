@@ -1,5 +1,7 @@
-import { pricesData } from '../../interfaces';
 import Head from 'next/head';
+
+import { pricesData } from '../../interfaces';
+
 import Header from '../../components/Header';
 import Table from './_table';
 

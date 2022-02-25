@@ -1,5 +1,6 @@
-import { resultProps } from '../../interfaces';
 import type { NextApiRequest, NextApiResponse } from 'next';
+
+import { resultProps } from '../../interfaces';
 
 let results: resultProps[] = [];
 

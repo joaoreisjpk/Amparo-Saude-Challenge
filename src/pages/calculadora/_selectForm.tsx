@@ -3,12 +3,12 @@ import { Button, FormControl, InputLabel, MenuItem } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
 import { Form, Formik } from 'formik';
 
-import MUISelect from '../../components/MUISelect';
-import MUInput from '../../components/MUInput';
-
 import { formikValueProps, pricesData } from '../../interfaces';
 import { formValidationHelper, handlePriceHelper } from '../../helpers';
 import { useResults } from '../../hooks/useResults';
+
+import MUISelect from '../../components/MUISelect';
+import MUInput from '../../components/MUInput';
 
 const SelectForm = ({ data }: pricesData) => {
   const [firstSelectMenuItem, setFirstSelectMenuItem] = useState<string[]>();

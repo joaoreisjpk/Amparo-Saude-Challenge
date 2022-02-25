@@ -1,7 +1,8 @@
+import type { NextPage } from 'next';
 import { Stack, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import type { NextPage } from 'next';
 import Head from 'next/head';
+
 import Header from '../components/Header';
 import PlanCards from './_planCards';
 

@@ -1,13 +1,17 @@
 import { styled } from '@mui/material/styles';
-import TableBody from '@mui/material/TableBody';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import { pricesData } from '../../interfaces';
 import MUITable from '@mui/material/Table';
-import { Box } from '@mui/material';
+import {
+  Paper,
+  TableRow,
+  TableHead,
+  TableContainer,
+  TableCell,
+  tableCellClasses,
+  TableBody,
+  Box,
+} from '@mui/material';
+
+import { pricesData } from '../../interfaces';
 import { moneyFormatting } from '../../helpers';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
