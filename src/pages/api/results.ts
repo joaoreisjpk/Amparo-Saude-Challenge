@@ -13,9 +13,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     res.status(201).json(results);
   } else if (req.method === 'DELETE') {
     const { id }: { id: string } = JSON.parse(req.body);
-    console.log(id);
     results = results.filter((item) => item.id !== id);
-    console.log(results);
     res.status(201).json(results);
   } else {
     res.status(200).json(results);

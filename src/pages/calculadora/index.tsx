@@ -30,7 +30,7 @@ export default function Calculadora({ data }: pricesData): JSX.Element {
 }
 
 import type { GetServerSideProps } from 'next';
-const URL = process.env.URL || 'https://amparo-telefonica.vercel.app/';
+const URL = process.env.URL || 'http://localhost:3000/api/';
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const response = await fetch(URL + 'prices');

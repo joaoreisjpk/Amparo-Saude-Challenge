@@ -14,8 +14,7 @@ interface TradesProviderProps {
 
 export const ResultsContext = createContext({} as IContext);
 
-const URL = process.env.URL || 'https://amparo-telefonica.vercel.app/';
-console.log(URL, process.env.URL);
+const URL = process.env.URL || 'http://localhost:3000/api';
 
 export function ResultsProvider({
   children,
@@ -39,7 +38,6 @@ export function ResultsProvider({
     });
 
     const response = await resolve.json();
-    console.log(response);
     setResults(response);
   };
 

@@ -26,7 +26,7 @@ export default function Prices({ data }: pricesData): JSX.Element {
 
 import { GetServerSideProps } from 'next';
 import { Stack, Typography } from '@mui/material';
-const URL = process.env.URL || 'https://amparo-telefonica.vercel.app/';
+const URL = process.env.URL || 'http://localhost:3000/api/';
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const response = await fetch(URL + 'prices');
