@@ -7,9 +7,10 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { useResults } from '../../hooks/useResults';
-import { Button } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { moneyFormatting } from '../../helpers';
+import LinearProgress from '@mui/material/LinearProgress';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -49,7 +50,7 @@ export default function Table() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {!!result.length &&
+          {!!result &&
             result.map((item) => (
               <StyledTableRow key={item.id}>
                 <StyledTableCell component='th' align='center' scope='row'>
@@ -84,6 +85,11 @@ export default function Table() {
             ))}
         </TableBody>
       </MUITable>
+      {!result && (
+        <Box sx={{ width: '100%' }}>
+          <LinearProgress sx={{ height: '.5rem' }} />
+        </Box>
+      )}
     </TableContainer>
   );
 }

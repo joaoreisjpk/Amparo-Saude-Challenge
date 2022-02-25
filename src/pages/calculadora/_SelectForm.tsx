@@ -1,5 +1,6 @@
-import { useEffect, useMemo, useState, SetStateAction, Dispatch } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Button, FormControl, InputLabel, MenuItem } from '@mui/material';
+import CircularProgress from '@mui/material/CircularProgress';
 import { Form, Formik } from 'formik';
 
 import MUISelect from '../../components/MUISelect';
@@ -11,7 +12,8 @@ import { useResults } from '../../hooks/useResults';
 
 const SelectForm = ({ data }: pricesData) => {
   const [firstSelectMenuItem, setFirstSelectMenuItem] = useState<string[]>();
-  const { result, setResult } = useResults();
+  const [isLoading, setIsLoading] = useState(false);
+  const { setResult } = useResults();
 
   const secondSelectMenuItems = (originValue: string) =>
     data?.filter(({ origem }) => origem === originValue);
@@ -26,10 +28,12 @@ const SelectForm = ({ data }: pricesData) => {
     [data]
   );
 
-  const handlePrice = (formikValues: formikValueProps) => {
+  const handlePrice = async (formikValues: formikValueProps) => {
     const newResult = handlePriceHelper({ formikValues, data });
 
-    setResult([...result, newResult]);
+    setIsLoading(true);
+    await setResult(newResult);
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -99,9 +103,9 @@ const SelectForm = ({ data }: pricesData) => {
               type='submit'
               size='large'
               variant='contained'
-              sx={{ height: '3.4rem', background: '#44b365' }}
+              sx={{ height: '3.4rem', background: '#44b365', width: '8rem' }}
             >
-              Calcular
+              {isLoading ? <CircularProgress /> : 'Calcular'}
             </Button>
           </Form>
         );
