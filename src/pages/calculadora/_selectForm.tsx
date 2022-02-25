@@ -59,7 +59,7 @@ const SelectForm = ({ data }: pricesData) => {
       {({ values }) => {
         return (
           <Form>
-            <FormControl>
+            <FormControl data-cy='ddd-origem'>
               <InputLabel id='originValue'>DDD de Origem</InputLabel>
               <MUISelect label='exchangeCurrency' name='originValue'>
                 {firstSelectMenuItem?.map((item) => (
@@ -70,7 +70,7 @@ const SelectForm = ({ data }: pricesData) => {
               </MUISelect>
             </FormControl>
 
-            <FormControl>
+            <FormControl data-cy='ddd-destino'>
               <InputLabel id='destinationValue'>DDD de Destino</InputLabel>
               <MUISelect
                 label='destinationValue'
@@ -88,7 +88,7 @@ const SelectForm = ({ data }: pricesData) => {
               </MUISelect>
             </FormControl>
 
-            <FormControl>
+            <FormControl data-cy='plano'>
               <InputLabel id='planValue'>Plano</InputLabel>
               <MUISelect name='planValue' label='planValue'>
                 <MenuItem value={'30'}>FaleMais 30</MenuItem>

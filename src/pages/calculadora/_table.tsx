@@ -53,7 +53,7 @@ export default function Table() {
           {!!result &&
             result.map((item) => (
               <StyledTableRow key={item.id}>
-                <StyledTableCell component='th' align='center' scope='row'>
+                <StyledTableCell align='center'>
                   {item.originValue}
                 </StyledTableCell>
                 <StyledTableCell align='center'>
