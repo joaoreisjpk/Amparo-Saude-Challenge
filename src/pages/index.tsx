@@ -9,13 +9,14 @@ import PlanCards from './_planCards';
 const Home: NextPage = () => {
   return (
     <div
-    /* style={{
-        backgroundImage: 'url("/mainbkg.jpg")',
-        backgroundSize: 'min(100%, 1200px)',
+      style={{
+        backgroundImage: 'url("/mainbkg.png")',
+        backgroundSize: 'calc(100vh - 4.5rem)',
+        backgroundPosition: 'right',
+        backgroundPositionY: '4.5rem',
         backgroundRepeat: 'no-repeat',
-        backgroundPositionY: 'calc(100px - 100vh)',
         height: '100vh',
-      }} */
+      }}
     >
       <Head>
         <title> Home - Amparo Telefônica</title>
