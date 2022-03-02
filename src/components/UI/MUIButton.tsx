@@ -13,7 +13,8 @@ export default function MUIButton({ bgColor, sx, children, ...rest }: IButton) {
         textTransform: 'none',
         fontWeight: '600',
         margin: '0 .5rem',
-        padding: '.4rem .8rem',
+        fontSize: '.85rem',
+        padding: '.4rem 1.5rem',
         '&:hover': {
           backgroundColor: bgColor,
           opacity: [0.9, 0.8, 0.7],

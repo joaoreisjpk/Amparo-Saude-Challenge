@@ -9,7 +9,7 @@ import { Box } from '@mui/material';
 
 export default function UpperHeader() {
   return (
-    <Box bgcolor='#eee' mb='10px' display='flex' justifyContent='center'>
+    <Box bgcolor='#eee' mb='1rem' display='flex' justifyContent='center'>
       <Box
         display='flex'
         justifyContent='space-between'
@@ -21,7 +21,7 @@ export default function UpperHeader() {
             href='https://www.facebook.com/amparocentrodesaude'
             target='_blank'
             rel='noreferrer'
-            style={{ margin: '.8rem 1rem .8rem 2rem', color: 'gray' }}
+            style={{ margin: '.8rem 1rem .8rem 3rem', color: 'gray' }}
           >
             <FacebookOutlinedIcon fontSize='small' />
           </a>
@@ -77,6 +77,7 @@ export default function UpperHeader() {
             color='#777'
             display='flex'
             alignItems='center'
+            mr={'3rem'}
           >
             <WhatsAppIcon sx={{ height: 15 }} />
             (11) 4020-1766

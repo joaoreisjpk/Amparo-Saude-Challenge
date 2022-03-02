@@ -11,9 +11,9 @@ const Home: NextPage = () => {
     <Box
       sx={{
         backgroundImage: 'url("/mainbkg.png")',
-        backgroundSize: 'calc(100vh - 4.5rem)',
+        backgroundSize: 'calc(100vh - 5rem)',
         backgroundPosition: 'right',
-        backgroundPositionY: '4.5rem',
+        backgroundPositionY: '5rem',
         backgroundRepeat: 'no-repeat',
         height: '100vh',
       }}

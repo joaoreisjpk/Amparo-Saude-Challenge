@@ -1,15 +1,13 @@
 import { AnchorHTMLAttributes, DetailedHTMLProps } from 'react';
-import NextLink from 'next/link';
+import NextLink, { LinkProps } from 'next/link';
 
-interface LinkProps
+interface ILink
   extends DetailedHTMLProps<
     AnchorHTMLAttributes<HTMLAnchorElement>,
     HTMLAnchorElement
-  > {
-  children: any;
-}
+  > {}
 
-export function Link({ children, ...rest }: LinkProps) {
+export function Link({ children, ...rest }: ILink & LinkProps) {
   return (
     <NextLink href={rest.href || '/'}>
       <a {...rest} href='#'>

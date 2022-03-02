@@ -1,8 +1,6 @@
 import Image from 'next/image';
-import Button from '@mui/material/Button';
 import { Link } from '../UI/NextLink';
 import { Box } from '@mui/system';
-import { background } from '../../helpers';
 import MUIButton from '../UI/MUIButton';
 
 export default function NavHeader() {
@@ -18,12 +16,12 @@ export default function NavHeader() {
         style={{
           display: 'flex',
           alignItems: 'center',
-          marginLeft: '2rem',
+          marginLeft: '3rem',
         }}
       >
         <Image src='/logo.png' alt='' width='60px' height='60px' />
         <Box ml='10px'>
-          <Image src='/logoname.png' alt='' width='120px' height='45px' />
+          <Image src='/logoname.png' alt='' width='120px' height='50px' />
         </Box>
       </Link>
       <Box m={'1rem'}>
@@ -34,7 +32,7 @@ export default function NavHeader() {
               padding: '.4rem 0rem',
               borderTop: '3px solid white',
               borderRadius: 0,
-              marginX: '2rem',
+              fontWeight: 500,
               fontSize: '.9rem',
               '&:hover': {
                 color: '#44b365',
@@ -52,7 +50,12 @@ export default function NavHeader() {
           </MUIButton>
         </Link>
         <Link href='/price-table'>
-          <MUIButton bgColor='#0081a6' variant='contained' size='small'>
+          <MUIButton
+            bgColor='#0081a6'
+            variant='contained'
+            size='small'
+            sx={{ marginRight: '1.5rem' }}
+          >
             Consulte taxas locais
           </MUIButton>
         </Link>
