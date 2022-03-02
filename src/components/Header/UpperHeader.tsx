@@ -10,12 +10,7 @@ import { Box } from '@mui/material';
 export default function UpperHeader() {
   return (
     <Box bgcolor='#eee' mb='1rem' display='flex' justifyContent='center'>
-      <Box
-        display='flex'
-        justifyContent='space-between'
-        width='100%'
-        maxWidth='1600px'
-      >
+      <Box display='flex' justifyContent='space-between' width='100%'>
         <Box display='flex'>
           <a
             href='https://www.facebook.com/amparocentrodesaude'

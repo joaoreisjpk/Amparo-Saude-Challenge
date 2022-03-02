@@ -5,12 +5,7 @@ import MUIButton from '../UI/MUIButton';
 
 export default function NavHeader() {
   return (
-    <Box
-      display='flex'
-      justifyContent='space-between'
-      width='100%'
-      maxWidth='1600px'
-    >
+    <Box display='flex' justifyContent='space-between' width='100%'>
       <Link
         href='/'
         style={{

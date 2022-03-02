@@ -14,7 +14,7 @@ export default function MUIButton({ bgColor, sx, children, ...rest }: IButton) {
         fontWeight: '600',
         margin: '0 .5rem',
         fontSize: '.85rem',
-        padding: '.4rem 1.5rem',
+        padding: '.4rem 1.3rem',
         '&:hover': {
           backgroundColor: bgColor,
           opacity: [0.9, 0.8, 0.7],
