@@ -5,26 +5,18 @@ import YouTubeIcon from '@mui/icons-material/YouTube';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import PhoneIcon from '@mui/icons-material/Phone';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import { Box } from '@mui/material';
 
 export default function UpperHeader() {
   return (
-    <div
-      style={{
-        backgroundColor: '#eee',
-        marginBottom: '10px',
-        display: 'flex',
-        justifyContent: 'center',
-      }}
-    >
-      <section
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          width: '100%',
-          maxWidth: '1600px',
-        }}
+    <Box bgcolor='#eee' mb='10px' display='flex' justifyContent='center'>
+      <Box
+        display='flex'
+        justifyContent='space-between'
+        width='100%'
+        maxWidth='1600px'
       >
-        <div style={{ display: 'flex' }}>
+        <Box display='flex'>
           <a
             href='https://www.facebook.com/amparocentrodesaude'
             target='_blank'
@@ -57,46 +49,40 @@ export default function UpperHeader() {
           >
             <YouTubeIcon fontSize='small' />
           </a>
-        </div>
-        <div style={{ display: 'flex' }}>
-          <div
-            style={{
-              margin: '1rem',
-              fontSize: '.8rem',
-              color: '#777',
-              display: 'flex',
-              alignItems: 'center',
-            }}
+        </Box>
+        <Box display='flex'>
+          <Box
+            m='1rem'
+            fontSize='.8rem'
+            color='#777'
+            display='flex'
+            alignItems='center'
           >
             <MailOutlineIcon sx={{ height: 16 }} />
             meajude@amparotelefonica.com
-          </div>
-          <div
-            style={{
-              margin: '1rem',
-              fontSize: '.8rem',
-              color: '#777',
-              display: 'flex',
-              alignItems: 'center',
-            }}
+          </Box>
+          <Box
+            margin='1rem'
+            fontSize='.8rem'
+            color='#777'
+            display='flex'
+            alignItems='center'
           >
             <PhoneIcon sx={{ height: 15 }} />
             4020-1766
-          </div>
-          <div
-            style={{
-              margin: '1rem',
-              fontSize: '.8rem',
-              color: '#777',
-              display: 'flex',
-              alignItems: 'center',
-            }}
+          </Box>
+          <Box
+            m='1rem'
+            fontSize='.8rem'
+            color='#777'
+            display='flex'
+            alignItems='center'
           >
             <WhatsAppIcon sx={{ height: 15 }} />
             (11) 4020-1766
-          </div>
-        </div>
-      </section>
-    </div>
+          </Box>
+        </Box>
+      </Box>
+    </Box>
   );
 }

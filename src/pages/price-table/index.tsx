@@ -30,6 +30,7 @@ const URL = process.env.URL || 'http://localhost:3000/api/';
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const response = await fetch(URL + 'prices');
+
   const data = await response.json();
 
   return {

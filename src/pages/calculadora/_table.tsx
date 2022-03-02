@@ -80,7 +80,14 @@ export default function Table() {
                   <Button
                     type='submit'
                     size='large'
-                    sx={{ height: '3.4rem', color: '#bc384b' }}
+                    sx={{
+                      height: '3.4rem',
+                      color: '#bc384b',
+                      '&:hover': {
+                        backgroundColor: 'white',
+                        opacity: [0.9, 0.8, 0.7],
+                      },
+                    }}
                     onClick={() => remove(item.id)}
                   >
                     <DeleteOutlineIcon />
@@ -91,7 +98,7 @@ export default function Table() {
         </TableBody>
       </MUITable>
       {!result && (
-        <Box sx={{ width: '100%' }}>
+        <Box width='100%'>
           <LinearProgress sx={{ height: '.5rem' }} />
         </Box>
       )}

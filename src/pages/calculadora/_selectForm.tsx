@@ -7,8 +7,9 @@ import { formikValueProps, pricesData } from '../../interfaces';
 import { formValidationHelper, handlePriceHelper } from '../../helpers';
 import { useResults } from '../../hooks/useResults';
 
-import MUISelect from '../../components/MUISelect';
-import MUInput from '../../components/MUInput';
+import MUISelect from '../../components/UI/MUISelect';
+import MUInput from '../../components/UI/MUInput';
+import MUIButton from '../../components/UI/MUIButton';
 
 const SelectForm = ({ data }: pricesData) => {
   const [firstSelectMenuItem, setFirstSelectMenuItem] = useState<string[]>();
@@ -99,15 +100,20 @@ const SelectForm = ({ data }: pricesData) => {
 
             <MUInput name='minutsValue' type='number' label='Minutagem' />
 
-            <Button
+            <MUIButton
               type='submit'
-              size='large'
               variant='contained'
+              bgColor='#44b365'
               disabled={isLoading}
-              sx={{ height: '3.4rem', background: '#44b365', width: '8rem' }}
+              sx={{
+                margin: '0',
+                height: '3.4rem',
+                textTransform: 'uppercase',
+                width: '8rem',
+              }}
             >
               {isLoading ? <CircularProgress /> : 'Calcular'}
-            </Button>
+            </MUIButton>
           </Form>
         );
       }}

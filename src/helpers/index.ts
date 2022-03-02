@@ -61,4 +61,14 @@ const moneyFormatting = (money: number) => {
   return formattedMoney;
 };
 
-export { handlePriceHelper, formValidationHelper, moneyFormatting };
+const background = (color: string) => {
+  return {
+    background: color,
+    '&:hover': {
+      backgroundColor: color,
+      opacity: [0.9, 0.8, 0.7],
+    },
+  };
+};
+
+export { handlePriceHelper, formValidationHelper, moneyFormatting, background };
