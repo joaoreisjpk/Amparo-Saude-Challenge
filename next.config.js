@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   env: {
-    URL: 'https://amparo-telefonica.vercel.app/api/',
+    URL: 'http://localhost:3000/api/',
   },
 };
 
