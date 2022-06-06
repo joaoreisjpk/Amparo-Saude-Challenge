@@ -1,3 +1,5 @@
+/// <reference types="cypress" />
+
 describe('example to-do app', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000/price-table');
@@ -39,3 +41,5 @@ describe('example to-do app', () => {
     cy.contains('td', 'R$2.70');
   });
 });
+
+export {};

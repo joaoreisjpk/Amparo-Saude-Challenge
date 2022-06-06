@@ -1,3 +1,5 @@
+/// <reference types="cypress" />
+
 describe('example to-do app', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000/calculadora');
@@ -72,3 +74,5 @@ describe('example to-do app', () => {
     cy.contains('td', 'R$3,800.00').should('not.exist');
   });
 });
+
+export {};
