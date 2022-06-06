@@ -90,7 +90,7 @@ describe('example to-do app', () => {
       expect(location.hostname).to.eq('localhost');
       expect(location.origin).to.eq('http://localhost:3000');
       expect(location.pathname).to.eq('/');
-      expect(location.port).to.eq('3000');
+      expect(location.port).to.eq('2000');
       expect(location.protocol).to.eq('http:');
       expect(location.search).to.be.empty;
     });
