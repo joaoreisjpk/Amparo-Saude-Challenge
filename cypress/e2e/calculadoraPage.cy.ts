@@ -74,5 +74,4 @@ describe('example to-do app', () => {
     cy.contains('td', 'R$3,800.00').should('not.exist');
   });
 });
-
 export {};
