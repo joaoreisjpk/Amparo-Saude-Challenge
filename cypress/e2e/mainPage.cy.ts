@@ -35,7 +35,7 @@ describe('example to-do app', () => {
     cy.get('h4 span').should('contain.text', 'eficiente');
 
     cy.get('p').should('have.length', '5');
-    cy.get('span').should('have.length', '9');
+    cy.get('span').should('have.length', '11');
     cy.get('h4').should('have.length', '1');
     cy.get('h6').should('have.length', '3');
   });
@@ -45,11 +45,11 @@ describe('example to-do app', () => {
 
     cy.get('button').should('have.length', '3');
 
-    cy.contains('button', 'Consulte taxas locais').should('have.attr', 'style');
+    cy.contains('button', 'Consulte taxas locais');
 
-    cy.contains('button', 'Quem é a Amparo?').should('have.attr', 'style');
+    cy.contains('button', 'Quem é a Amparo?');
 
-    cy.contains('button', 'Calcule seu Desconto').should('have.attr', 'style');
+    cy.contains('button', 'Calcule seu Desconto');
   });
 
   it('should have the buttons working propperly', () => {
