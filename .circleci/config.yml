@@ -6,7 +6,7 @@ workflows:
     jobs:
       - cypress/run:
           command: |
-            npx cypress run --record --key 2b4858de-9c71-4a91-8591-e1798025e50e
+            npx cypress run
           start: npm run dev
           wait-on: 'http://localhost:3000'
           record: true
